@@ -17,6 +17,17 @@ http://code.google.com/p/neuroelec/downloads/list
 
 
   Updated in Jul 2016 to compile with the recent arduino includes.
+ 
+ UPDATES
+ 2018/05/19:1114>
+ 			Made by Orlando Hoilett: I don't recommend putting Wire.begin()
+ 			within another library. Wire.begin() should be called in the setup()
+ 			function of an Arduino sketch. In the case were the user includes
+ 			multiple I2C device libraries, several Wire.begin() calls can cause
+ 			issues. See examples here:
+ 			https://github.com/esp8266/Arduino/issues/2607
+ 			https://github.com/esp8266/Arduino/issues/3728
+ 
 
 */
 
@@ -42,7 +53,6 @@ Begin I2C, get current values (input register and eeprom) of mcp4728
 */
 void mcp4728::begin()
 {
-  Wire.begin();
   getStatus();
 }
 /*
